@@ -31,13 +31,15 @@ const screens = {
     },
     RouteScreen: {
         screen: RouteScreen,
-        navigationOptions: () => ({
-            title: '',
-            // headerStyle: styles.headerStyle,
-            headerTitle: <Text></Text>,
-            // headerLeft: null,
-            // headerRight: null,
-        })
+        // navigationOptions: () => ({
+        //     title: '',
+        //     // headerStyle: styles.headerStyle,
+        //     headerTitle: <Text></Text>,
+        //     // headerLeft: null,
+        //     // headerRight: null,
+        // })
+        navigationOptions: { headerShown: false }
+
     }
 
 }

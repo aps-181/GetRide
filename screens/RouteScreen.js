@@ -7,10 +7,12 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import RouteScreenStack
     from '../components/RouteScreenStack';
 import Map from '../components/Map';
+import { Icon } from 'react-native-elements/dist/icons/Icon'
+// import { useNavigation } from '@react-navigation/native';
 
 
-const RouteScreen = () => {
-
+const RouteScreen = ({ navigation }) => {
+    // const navigation = useNavigation()
     return (
         <SafeAreaView style={tw`bg-white h-full flex-grow`}>
             <View style={tw`h-1/3`}>
@@ -20,6 +22,12 @@ const RouteScreen = () => {
                         <FontAwesome name="arrow-left" color="black" size={25} />
                     </TouchableOpacity>
                 </View> */}
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('HomeScreen')}
+                    style={tw`bg-gray-100 absolute top-16 left-8 z-50 p-3 rounded-full shadow-lg`}>
+                    <Icon name="menu" />
+                </TouchableOpacity>
+
                 <Map />
             </View>
             <View style={tw`h-2/3`}>

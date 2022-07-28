@@ -35,7 +35,7 @@ const VehicleDetails = () => {
     const navigation = useNavigation();
     const [selected, setSelected] = useState(null)
     const dispatch = useDispatch();
-
+    let bool = true
 
     useEffect(() => {
         // setCalculation(() => count * 2);
@@ -47,6 +47,7 @@ const VehicleDetails = () => {
         // dispatch(setTrip(count))
         dispatch(setTrip({
             seats: count
+
         }))
     }, [count]);
 
@@ -62,12 +63,14 @@ const VehicleDetails = () => {
                                 setCount(count - 1)
                             }
                             }
+                            disabled={(count < 2)}
                             style={[tw`bg-white border border-black`, { height: 35, width: 35 }]}>
                             <FontAwesome name="minus" color="black" size={20} style={[tw`text-center`, { paddingTop: 7 }]} />
                         </TouchableOpacity>
                         <Text style={tw`text-xl mx-2 mt-1`}>{count}</Text>
                         <TouchableOpacity
                             onPress={() => setCount(count + 1)}
+                            disabled={(count > 4)}
                             style={[tw`bg-white border border-black`, { height: 35, width: 35 }]}>
                             <FontAwesome name="plus" color="black" size={20} style={[tw`text-center`, { paddingTop: 7 }]} />
                         </TouchableOpacity>
