@@ -83,12 +83,16 @@ const WhereTo = () => {
 
             <Text style={tw`m-3 text-xl`}>Schedule</Text>
             <View style={tw`flex flex-row justify-evenly`}>
-                <TouchableOpacity style={tw`p-2 pl-6 pb-8 pt-4 border rounded-lg bg-white m-2 w-40 `}>
+                <Text>Date: </Text>
+                <View style={tw`p-2 pl-6 pb-8 pt-4 border rounded-lg bg-white m-2 w-40 `}>
+
+                </View>
+                {/* <TouchableOpacity style={tw`p-2 pl-6 pb-8 pt-4 border rounded-lg bg-white m-2 w-40 `}>
                     <Text style={tw`text-center text-lg mr-4 mt-auto`}>Today</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={tw`p-2 pl-6 pb-8 pt-4 border bg-yellow-200 rounded-lg bg-white m-2 w-40`}>
+                </TouchableOpacity> */}
+                {/* <TouchableOpacity style={tw`p-2 pl-6 pb-8 pt-4 border bg-yellow-200 rounded-lg bg-white m-2 w-40`}>
                     <Text style={tw`text-center text-lg mr-4 mt-auto`}>Now</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
             <View style={tw`mt-auto bg-white border-t border-gray-200`}>
                 <TouchableOpacity

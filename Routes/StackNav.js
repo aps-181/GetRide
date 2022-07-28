@@ -6,6 +6,7 @@ import LoginScreen from "../screens/LoginScreen"
 import RegisterScreen from "../screens/RegisterScreen"
 import UserFirstScreen from "../screens/UserFirstScreen"
 import RouteScreen from "../screens/RouteScreen";
+import { Text } from "react-native";
 const screens = {
     FirstScreen: {
         screen: FirstScreen,
@@ -30,7 +31,13 @@ const screens = {
     },
     RouteScreen: {
         screen: RouteScreen,
-        navigationOptions: { headerShown: false }
+        navigationOptions: () => ({
+            title: '',
+            // headerStyle: styles.headerStyle,
+            headerTitle: <Text></Text>,
+            // headerLeft: null,
+            // headerRight: null,
+        })
     }
 
 }

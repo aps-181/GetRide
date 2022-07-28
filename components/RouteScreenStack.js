@@ -26,6 +26,7 @@ const RouteScreenStack = () => {
                     options={{
                         headerShown: false
                     }}
+
                 />
                 <Stack.Screen
                     name="VehicleDetails"
