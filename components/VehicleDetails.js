@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, TouchableOpacity, FlatList, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, Pressable, Button, TouchableOpacity, FlatList, ScrollView, KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -116,18 +116,22 @@ const VehicleDetails = () => {
                             </TouchableOpacity>
                         )}
                     />
-                    <TouchableOpacity onPress={() => navigation.navigate('Add Vehicle')} style={[tw`mt-5 items-center`, { height: 35, width: 150, borderColor: "#000", borderWidth: 1 }]}>
+                    {/* <TouchableOpacity onPress={() => navigation.navigate('Add Vehicle')} style={[tw`mt-5 items-center`, { height: 35, width: 150, borderColor: "#000", borderWidth: 1 }]}>
                         <Text style={tw`text-center my-auto`}>Add new vehicle</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
+                    <View style={tw`w-1/3 mr-3`}>
+                        <Button title='Add new Vehicle' onPress={() => navigation.navigate('Add Vehicle')}></Button>
+                    </View>
                 </View>
             </View>
-
+            {/* color="#ffd700" */}
             <View style={tw`mt-auto bg-white border-t border-gray-200`}>
                 <TouchableOpacity
                     onPress={() => {
                         navigation.navigate("Review")
                     }}
-                    style={tw`bg-blue-500 py-3 m-3 rounded-md items-center`}>
+                    disabled={!selected}
+                    style={tw`bg-blue-500 py-3 m-3 rounded-md items-center ${!selected && "bg-blue-100"}`}>
                     <Text style={tw`text-center text-white text-xl pb-5 top-2`}>Next</Text>
                 </TouchableOpacity>
             </View>

@@ -16,8 +16,8 @@ const WhereTo = () => {
 
     const navigation = useNavigation();
     const [fare, setFare] = useState('0')
-
-
+    const [ori, setOri] = useState(null)
+    const [dest, setDest] = useState(null)
     return (
 
 
@@ -43,7 +43,9 @@ const WhereTo = () => {
                         dispatch(setOrigin({
                             location: details.geometry.location,
                             description: data.description,
-                        }))
+                        })),
+                            setOri(data.description)
+
                     }}
 
 
@@ -74,7 +76,8 @@ const WhereTo = () => {
                         dispatch(setDestination({
                             location: details.geometry.location,
                             description: data.description,
-                        }))
+                        })),
+                            setDest(data.description)
                     }}
                     enablePoweredByContainer={false}
                     query={{
@@ -94,7 +97,8 @@ const WhereTo = () => {
                 <View style={tw`bg-white border-t border-gray-200 mt-auto top-8`}>
                     <TouchableOpacity
                         onPress={() => navigation.navigate("VehicleDetails")}
-                        style={tw`bg-blue-500 py-3 m-3 rounded-md items-center`}>
+                        disabled={!ori && !dest}
+                        style={tw`bg-blue-500 py-3 m-3 rounded-md items-center ${!ori && !dest && "bg-blue-100"}`}>
                         <Text style={tw`text-center text-white text-xl pb-5 top-2`}>Next</Text>
                     </TouchableOpacity>
                 </View>

@@ -84,7 +84,8 @@ const AddVehicle = () => {
                 <View style={tw`bg-white border-t border-gray-200 top-14`}>
                     <TouchableOpacity
                         onPress={() => navigation.navigate("VehicleDetails")}
-                        style={tw`bg-green-500 py-3 m-3 rounded-md items-center`}>
+                        disabled={!name && !regNo}
+                        style={tw`bg-green-500 py-3 m-3 rounded-md items-center ${!name && !regNo && "bg-green-100"}`}>
                         <Text style={tw`text-center text-white text-xl pb-5 top-2`}>Add Vehicle</Text>
                     </TouchableOpacity>
                 </View>
