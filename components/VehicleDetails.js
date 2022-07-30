@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, TouchableOpacity, FlatList } from 'react-native'
+import { StyleSheet, Text, View, Pressable, TouchableOpacity, FlatList, ScrollView, KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -7,6 +7,7 @@ import { Image } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native'
 import { setVehicle, setTrip } from '../slices/navSlice';
 import { useDispatch } from 'react-redux';
+import AddVehicle from './AddVehicle';
 
 const data = [
     {
@@ -17,13 +18,25 @@ const data = [
         regNo: "KL 64 6464",
         totalSeats: 5
     },
+    // {
+    //     id: "Uber-XL-456",
+    //     title: "Uber XL",
+    //     multiplier: 1.2,
+    //     image: "https://links.papareact.com/5w8",
+    //     regNo: "KL 64 6464",
+    //     totalSeats: 5
+
+    // },
     {
-        id: "Uber-XL-456",
-        title: "Uber XL",
+        id: "Bike",
+        title: "Bike",
         multiplier: 1.2,
-        image: "https://links.papareact.com/5w8",
+        // image: "https://ih1.redbubble.net/image.3253725746.3421/st,small,107x107-pad,100x100,f8f8f8.jpg",
+        // image: "https://res.cloudinary.com/djsyh5syl/image/upload/c_scale,h_106/v1659076440/mini/sticker-vespa-gs-motif_70066940-removebg-preview_v7ccsu.png",
+        // image: "https://cdn5.vectorstock.com/i/thumb-large/53/69/isolated-vintage-motorcycle-design-vector-31955369.jpg",
+        image: "https://res.cloudinary.com/djsyh5syl/image/upload/v1659076334/mini/scooter2edit-removebg-preview_biwusi.png",
         regNo: "KL 64 6464",
-        totalSeats: 5
+        totalSeats: 2
 
     },
 
@@ -35,16 +48,11 @@ const VehicleDetails = () => {
     const navigation = useNavigation();
     const [selected, setSelected] = useState(null)
     const dispatch = useDispatch();
-    let bool = true
 
     useEffect(() => {
-        // setCalculation(() => count * 2);
-        // dispatch(setTrip(count))
         dispatch(setVehicle(selected))
     }, [selected]);
     useEffect(() => {
-        // setCalculation(() => count * 2);
-        // dispatch(setTrip(count))
         dispatch(setTrip({
             seats: count
 
@@ -54,7 +62,7 @@ const VehicleDetails = () => {
 
     return (
         <View style={tw`bg-white h-full`}>
-            <View style={tw`m-3 mx-4`}>
+            <View style={tw`m-3`}>
                 <View style={tw`flex flex-row justify-between`}>
                     <Text style={tw`text-xl`}>Available Seats</Text>
                     <View style={tw`flex flex-row`}>
@@ -89,7 +97,7 @@ const VehicleDetails = () => {
                                 onPress={() => (setSelected(item)
 
                                 )}
-                                style={tw`flex-row justify-between items-center px-5 pb-1  ${id === selected?.id && "bg-gray-200"}`}>
+                                style={tw`flex-row justify-between items-center px-5 pb-1  ${id === selected?.id && "bg-yellow-100"}`}>
                                 <Image
                                     style={{
                                         width: 100,
@@ -108,17 +116,16 @@ const VehicleDetails = () => {
                             </TouchableOpacity>
                         )}
                     />
-                    <TouchableOpacity style={[tw`mt-5 items-center`, { height: 35, width: 150, borderColor: "#000", borderWidth: 1 }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Add Vehicle')} style={[tw`mt-5 items-center`, { height: 35, width: 150, borderColor: "#000", borderWidth: 1 }]}>
                         <Text style={tw`text-center my-auto`}>Add new vehicle</Text>
                     </TouchableOpacity>
                 </View>
             </View>
+
             <View style={tw`mt-auto bg-white border-t border-gray-200`}>
                 <TouchableOpacity
                     onPress={() => {
                         navigation.navigate("Review")
-                        // (selected && dispatch(setVehicle(selected)))
-                        // dispatch(setTrip(count))
                     }}
                     style={tw`bg-blue-500 py-3 m-3 rounded-md items-center`}>
                     <Text style={tw`text-center text-white text-xl pb-5 top-2`}>Next</Text>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, SafeAreaView, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, SafeAreaView, View, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 import DatePicker from './DatePicker'
 import tw from 'twrnc';
@@ -8,13 +8,19 @@ import { GOOGLE_MAPS_API_KEY } from '@env'
 import { useNavigation } from '@react-navigation/native'
 import { setDestination, setOrigin } from '../slices/navSlice';
 import { useDispatch } from 'react-redux';
-
+import { useState, useEffect } from 'react';
+import OutlineInput from 'react-native-outline-input';
+import { setTravelTimeInformation } from '../slices/navSlice';
 const WhereTo = () => {
     const dispatch = useDispatch();
 
     const navigation = useNavigation();
+    const [fare, setFare] = useState('0')
+
 
     return (
+
+
         <View style={tw`bg-white h-full`}>
             <Text style={tw`m-3 text-xl`}>Your route</Text>
             <View style={tw`border rounded-lg m-3 p-2`}>
@@ -81,17 +87,19 @@ const WhereTo = () => {
                 />
             </View>
 
-            <Text style={tw`m-3 text-xl`}>Schedule</Text>
             <View>
                 <DatePicker />
             </View>
-            <View style={tw`mt-auto bg-white border-t border-gray-200`}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("VehicleDetails")}
-                    style={tw`bg-blue-500 py-3 m-3 rounded-md items-center`}>
-                    <Text style={tw`text-center text-white text-xl pb-5 top-2`}>Next</Text>
-                </TouchableOpacity>
-            </View>
+            <KeyboardAvoidingView>
+                <View style={tw`bg-white border-t border-gray-200 mt-auto top-8`}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate("VehicleDetails")}
+                        style={tw`bg-blue-500 py-3 m-3 rounded-md items-center`}>
+                        <Text style={tw`text-center text-white text-xl pb-5 top-2`}>Next</Text>
+                    </TouchableOpacity>
+                </View>
+            </KeyboardAvoidingView>
+
         </View>
 
 

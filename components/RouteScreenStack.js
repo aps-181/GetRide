@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native'
 import Review from './Review';
 import { NavigationContainer } from '@react-navigation/native';
+import AddVehicle from './AddVehicle';
 
 
 
@@ -33,6 +34,13 @@ const RouteScreenStack = () => {
                     component={VehicleDetails}
                     options={{
                         headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name="Add Vehicle"
+                    component={AddVehicle}
+                    options={{
+                        // headerShown: false
                     }}
                 />
                 <Stack.Screen

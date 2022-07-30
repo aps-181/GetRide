@@ -12,41 +12,47 @@ const Review = () => {
     const travelInfo = useSelector(selectTravelTimeInformation)
 
 
-    let start = origin.description.split(",")[0] + ' ,' + origin.description.split(",")[1]
-    let end = destination.description.split(",")[0] + ' ,' + destination.description.split(",")[1]
+    let start = (origin?.description?.split(",")[0] + ' ,' + origin?.description?.split(",")[1]) || 'Please add origin'
+    let end = (destination?.description?.split(",")[0] + ' ,' + destination?.description?.split(",")[1]) || 'Please add destination'
     return (
-        <ScrollView style={tw`bg-white h-full`}>
-            <View style={tw`m-3 bg-white h-full`}>
-                <View style={tw`border rounded-lg p-2`}>
-                    <Text style={tw`text-lg p-1`}>From: {start}</Text>
-                    <View style={tw`border-t-2 border-gray-200`} />
-                    <Text style={tw`text-lg p-1`}>To: {end}</Text>
-                </View>
-                <View style={tw`flex flex-row justify-between mt-2`}>
-                    <View style={[tw`mt-2 items-center`, { height: 50, width: 178, borderColor: "#000", borderWidth: 1 }]}>
-                        <Text style={tw`text-center my-auto text-lg`}>Date: {travelInfo.date}</Text>
+        <View style={tw`bg-white h-full`}>
+            <ScrollView>
+                <View style={tw`m-3 bg-white h-full`}>
+                    <View style={tw`border rounded-lg p-2 mt-2`}>
+                        <Text style={tw`text-lg p-1`}>From: {start || ''}</Text>
+                        <View style={tw`border-t-2 border-gray-200`} />
+                        <Text style={tw`text-lg p-1`}>To: {end || ''}</Text>
                     </View>
-                    <View style={[tw`mt-2 items-center`, { height: 50, width: 178, borderColor: "#000", borderWidth: 1 }]}>
-                        <Text style={tw`text-center my-auto text-lg`}>Time: {travelInfo.time}</Text>
+                    <View style={tw`flex flex-row justify-between mt-2`}>
+                        <View style={[tw`mt-2 items-center`, { height: 50, width: 178, borderColor: "#000", borderWidth: 1 }]}>
+                            <Text style={tw`text-center my-auto text-lg`}>Date: {travelInfo?.date || ''}</Text>
+                        </View>
+                        <View style={[tw`mt-2 items-center`, { height: 50, width: 178, borderColor: "#000", borderWidth: 1 }]}>
+                            <Text style={tw`text-center my-auto text-lg`}>Time: {travelInfo?.time || ''}</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={[tw`mt-2 flex-row p-2 px-2 mt-4`, { height: 50, borderColor: "#000", borderWidth: 1 }]}>
-                    <Text style={tw`text-left ml-2 text-lg my-auto`}>Available Seats</Text>
-                    <Text style={[tw`text-right mr-2 text-lg my-auto`, { marginLeft: 'auto' }]}>{trip.seats}</Text>
-                    {/* //{trip} */}
-                </View>
+                    <View style={[tw`mt-2 flex-row p-2 px-2 mt-4`, { height: 50, borderColor: "#000", borderWidth: 1 }]}>
+                        <Text style={tw`text-left ml-2 text-lg my-auto`}>Available Seats:</Text>
+                        <Text style={[tw`text-right mr-2 text-lg my-auto`, { marginLeft: 'auto' }]}>{trip?.seats || ''}</Text>
+                        {/* //{trip} */}
+                    </View>
 
-                <View style={[tw`mt-2 flex-row p-2 px-2 mt-4`, { height: 50, borderColor: "#000", borderWidth: 1 }]}>
-                    <Text style={tw`text-left ml-2 text-lg my-auto`}>Vehicle</Text>
-                    <Text style={[tw`text-right mr-2 my-auto`, { marginLeft: 'auto' }]}>{vehicle.title} {vehicle.regNo}</Text>
-                </View>
+                    <View style={[tw`mt-2 flex-row p-2 px-2 mt-4`, { height: 50, borderColor: "#000", borderWidth: 1 }]}>
+                        <Text style={tw`text-left ml-2 text-lg my-auto`}>Vehicle:</Text>
+                        <Text style={[tw`text-right mr-2 my-auto text-lg`, { marginLeft: 'auto' }]}>{vehicle?.title}</Text>
+                    </View>
+                    <View style={[tw`mt-2 flex-row p-2 px-2 mt-4`, { height: 50, borderColor: "#000", borderWidth: 1 }]}>
+                        <Text style={tw`text-left ml-2 text-lg my-auto`}>Reg No:</Text>
+                        <Text style={[tw`text-right mr-2 my-auto text-lg`, { marginLeft: 'auto' }]}>{vehicle?.regNo}</Text>
+                    </View>
 
-                <View style={[tw`mt-2 flex-row p-2 px-2 mt-4`, { height: 50, borderColor: "#000", borderWidth: 1 }]}>
-                    <Text style={tw`text-left ml-2 text-lg my-auto`}>Fee (per person per km)</Text>
-                    <Text style={[tw`text-right mr-2 text-lg my-auto`, { marginLeft: 'auto' }]}>50</Text>
-                </View>
+                    <View style={[tw`mt-2 flex-row p-2 px-2 mt-4`, { height: 50, borderColor: "#000", borderWidth: 1 }]}>
+                        <Text style={tw`text-left ml-2 text-lg my-auto`}>Fee (per person)</Text>
+                        <Text style={[tw`text-right mr-2 text-lg my-auto`, { marginLeft: 'auto' }]}>{travelInfo?.fare} rupees per km</Text>
+                    </View>
 
-            </View>
+                </View>
+            </ScrollView>
             <View style={tw`mt-auto bg-white border-t border-gray-200`}>
                 <TouchableOpacity
                     // onPress={() => navigation.navigate("Review")}
@@ -54,7 +60,7 @@ const Review = () => {
                     <Text style={tw`text-center text-white text-xl pb-5 top-2`}>Create Trip</Text>
                 </TouchableOpacity>
             </View>
-        </ScrollView>
+        </View>
     )
 }
 
