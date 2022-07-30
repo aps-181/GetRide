@@ -98,7 +98,7 @@ const WhereTo = () => {
                     <TouchableOpacity
                         onPress={() => navigation.navigate("VehicleDetails")}
                         disabled={!ori && !dest}
-                        style={tw`bg-blue-500 py-3 m-3 rounded-md items-center ${!ori && !dest && "bg-blue-100"}`}>
+                        style={tw`bg-blue-500 py-3 m-3 rounded-md items-center ${(!ori || !dest) && "bg-blue-100"}`}>
                         <Text style={tw`text-center text-white text-xl pb-5 top-2`}>Next</Text>
                     </TouchableOpacity>
                 </View>

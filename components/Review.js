@@ -3,6 +3,10 @@ import React from 'react'
 import tw from "twrnc"
 import { useSelector } from 'react-redux'
 import { selectOrigin, selectDestination, selectVehicle, selectTrip, selectTravelTimeInformation } from '../slices/navSlice'
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
+
+
 const Review = () => {
 
     const origin = useSelector(selectOrigin)
@@ -10,14 +14,17 @@ const Review = () => {
     const vehicle = useSelector(selectVehicle)
     const trip = useSelector(selectTrip)
     const travelInfo = useSelector(selectTravelTimeInformation)
-
+    const navigation = useNavigation()
 
     let start = (origin?.description?.split(",")[0] + ' ,' + origin?.description?.split(",")[1]) || 'Please add origin'
     let end = (destination?.description?.split(",")[0] + ' ,' + destination?.description?.split(",")[1]) || 'Please add destination'
     return (
         <View style={tw`bg-white h-full`}>
             <ScrollView>
-                <View style={tw`m-3 bg-white h-full`}>
+                <TouchableOpacity style={tw`mt-2 ml-2`} onPress={() => navigation.goBack()}>
+                    <AntDesign name="left" size={24} color="black" />
+                </TouchableOpacity>
+                <View style={tw`m-3 mt-1 h-3/4`}>
                     <View style={tw`border rounded-lg p-2 mt-2`}>
                         <Text style={tw`text-lg p-1`}>From: {start || ''}</Text>
                         <View style={tw`border-t-2 border-gray-200`} />

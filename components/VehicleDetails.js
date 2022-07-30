@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native'
 import { setVehicle, setTrip } from '../slices/navSlice';
 import { useDispatch } from 'react-redux';
 import AddVehicle from './AddVehicle';
-
+import { AntDesign } from '@expo/vector-icons';
 const data = [
     {
         id: "Uber-X-123",
@@ -62,7 +62,10 @@ const VehicleDetails = () => {
 
     return (
         <View style={tw`bg-white h-full`}>
-            <View style={tw`m-3`}>
+            <TouchableOpacity style={tw`mt-1 ml-2 shadow-lg`} onPress={() => navigation.goBack()}>
+                <AntDesign name="left" size={24} color="black" />
+            </TouchableOpacity>
+            <View style={tw`m-3 h-3/4`}>
                 <View style={tw`flex flex-row justify-between`}>
                     <Text style={tw`text-xl`}>Available Seats</Text>
                     <View style={tw`flex flex-row`}>
@@ -119,7 +122,7 @@ const VehicleDetails = () => {
                     {/* <TouchableOpacity onPress={() => navigation.navigate('Add Vehicle')} style={[tw`mt-5 items-center`, { height: 35, width: 150, borderColor: "#000", borderWidth: 1 }]}>
                         <Text style={tw`text-center my-auto`}>Add new vehicle</Text>
                     </TouchableOpacity> */}
-                    <View style={tw`w-1/3 mr-3`}>
+                    <View style={tw`w-1/3 mr-3 mt-3`}>
                         <Button title='Add new Vehicle' onPress={() => navigation.navigate('Add Vehicle')}></Button>
                     </View>
                 </View>

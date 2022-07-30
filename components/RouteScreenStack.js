@@ -40,7 +40,7 @@ const RouteScreenStack = () => {
                     name="Add Vehicle"
                     component={AddVehicle}
                     options={{
-                        // headerShown: false
+                        headerShown: false,
                     }}
                 />
                 <Stack.Screen
