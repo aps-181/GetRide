@@ -6,6 +6,9 @@ import LoginScreen from "../screens/LoginScreen"
 import RegisterScreen from "../screens/RegisterScreen"
 import UserFirstScreen from "../screens/UserFirstScreen"
 import RouteScreen from "../screens/RouteScreen";
+import UserScreen from "../screens/UserScreen";
+import UserSScreen from "../screens/UserSScreen";
+import showRides from "../screens/showRides";
 const screens = {
     FirstScreen: {
         screen: FirstScreen,
@@ -39,6 +42,18 @@ const screens = {
         // })
         navigationOptions: { headerShown: false }
 
+    },
+    UserScreen: {
+        screen: UserScreen,
+        navigationOptions: { headerShown: false }
+    },
+    UserSScreen: {
+        screen: UserSScreen,
+        navigationOptions: { headerShown: false }
+    },
+    showRides: {
+        screen: showRides,
+        navigationOptions: { headerShown: false }
     }
 
 }

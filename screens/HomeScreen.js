@@ -29,6 +29,7 @@ export default function HomeScreen({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           /* do this */
+          navigation.navigate('UserScreen')
         }}
       >
         <View style={styles.Gbutton}>

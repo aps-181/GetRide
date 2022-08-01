@@ -47,6 +47,7 @@ const Map = () => {
             ref={mapRef}
             style={tw`flex-1`}
             mapType="mutedStandard"
+            zoomEnabled={true}
             initialRegion={{
                 latitude: origin?.location.lat || 9.931233,
                 longitude: origin?.location.lng || 76.267303,

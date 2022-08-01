@@ -9,38 +9,50 @@ import { setVehicle, setTrip } from '../slices/navSlice';
 import { useDispatch } from 'react-redux';
 import AddVehicle from './AddVehicle';
 import { AntDesign } from '@expo/vector-icons';
-const data = [
-    {
-        id: "Uber-X-123",
-        title: "UberX",
-        multiplier: 1,
-        image: "https://links.papareact.com/3pn",
-        regNo: "KL 64 6464",
-        totalSeats: 5
-    },
-    // {
-    //     id: "Uber-XL-456",
-    //     title: "Uber XL",
-    //     multiplier: 1.2,
-    //     image: "https://links.papareact.com/5w8",
-    //     regNo: "KL 64 6464",
-    //     totalSeats: 5
+import { useSelector } from 'react-redux'
+import { selectNewVehicle } from '../slices/navSlice';
 
-    // },
-    {
-        id: "Bike",
-        title: "Bike",
-        multiplier: 1.2,
-        // image: "https://ih1.redbubble.net/image.3253725746.3421/st,small,107x107-pad,100x100,f8f8f8.jpg",
-        // image: "https://res.cloudinary.com/djsyh5syl/image/upload/c_scale,h_106/v1659076440/mini/sticker-vespa-gs-motif_70066940-removebg-preview_v7ccsu.png",
-        // image: "https://cdn5.vectorstock.com/i/thumb-large/53/69/isolated-vintage-motorcycle-design-vector-31955369.jpg",
-        image: "https://res.cloudinary.com/djsyh5syl/image/upload/v1659076334/mini/scooter2edit-removebg-preview_biwusi.png",
-        regNo: "KL 64 6464",
-        totalSeats: 2
 
-    },
+// const data = [
+//     {
+//         id: "Uber-X-123",
+//         title: "UberX",
+//         multiplier: 1,
+//         image: "https://links.papareact.com/3pn",
+//         regNo: "KL 64 6464",
+//         totalSeats: 5
+//     },
+//     // {
+//     //     id: "Uber-XL-456",
+//     //     title: "Uber XL",
+//     //     multiplier: 1.2,
+//     //     image: "https://links.papareact.com/5w8",
+//     //     regNo: "KL 64 6464",
+//     //     totalSeats: 5
 
-];
+//     // },
+//     {
+//         id: "Bike",
+//         title: "Bike",
+//         multiplier: 1.2,
+//         // image: "https://ih1.redbubble.net/image.3253725746.3421/st,small,107x107-pad,100x100,f8f8f8.jpg",
+//         // image: "https://res.cloudinary.com/djsyh5syl/image/upload/c_scale,h_106/v1659076440/mini/sticker-vespa-gs-motif_70066940-removebg-preview_v7ccsu.png",
+//         // image: "https://cdn5.vectorstock.com/i/thumb-large/53/69/isolated-vintage-motorcycle-design-vector-31955369.jpg",
+//         image: "https://res.cloudinary.com/djsyh5syl/image/upload/v1659076334/mini/scooter2edit-removebg-preview_biwusi.png",
+//         regNo: "KL 64 6464",
+//         totalSeats: 2
+
+//     },
+//     {
+//         id: 3,
+//         title: newVehicle.name,
+//         multiplier: 1.2,
+//         image: newVehicle.image,
+//         regNo: newVehicle.regNo,
+//         totalSeats: newVehicle.totalSeats
+//     }
+
+// ];
 
 const VehicleDetails = () => {
 
@@ -48,6 +60,7 @@ const VehicleDetails = () => {
     const navigation = useNavigation();
     const [selected, setSelected] = useState(null)
     const dispatch = useDispatch();
+    const newVehicle = useSelector(selectNewVehicle)
 
     useEffect(() => {
         dispatch(setVehicle(selected))
@@ -59,6 +72,37 @@ const VehicleDetails = () => {
         }))
     }, [count]);
 
+    const data = [
+        {
+            id: "123",
+            title: "Ciaz",
+            multiplier: 1,
+            image: "https://links.papareact.com/7pf",
+            regNo: "KL 07 CG 9808",
+            totalSeats: 5
+        },
+        // {
+        //     id: "Uber-XL-456",
+        //     title: "Uber XL",
+        //     multiplier: 1.2,
+        //     image: "https://links.papareact.com/5w8",
+        //     regNo: "KL 64 6464",
+        //     totalSeats: 5
+
+        // },
+        {
+            id: "Bike",
+            title: "Activa",
+            multiplier: 1.2,
+            // image: "https://ih1.redbubble.net/image.3253725746.3421/st,small,107x107-pad,100x100,f8f8f8.jpg",
+            // image: "https://res.cloudinary.com/djsyh5syl/image/upload/c_scale,h_106/v1659076440/mini/sticker-vespa-gs-motif_70066940-removebg-preview_v7ccsu.png",
+            // image: "https://cdn5.vectorstock.com/i/thumb-large/53/69/isolated-vintage-motorcycle-design-vector-31955369.jpg",
+            image: "https://res.cloudinary.com/djsyh5syl/image/upload/v1659076334/mini/scooter2edit-removebg-preview_biwusi.png",
+            regNo: "KL 07 CA 3547",
+            totalSeats: 2
+
+        },
+    ];
 
     return (
         <View style={tw`bg-white h-full`}>
@@ -128,6 +172,7 @@ const VehicleDetails = () => {
                 </View>
             </View>
             {/* color="#ffd700" */}
+
             <View style={tw`mt-auto bg-white border-t border-gray-200`}>
                 <TouchableOpacity
                     onPress={() => {

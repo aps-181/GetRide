@@ -18,13 +18,13 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 //import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./HomeScreen";
 import { useNavigationContainerRef } from "@react-navigation/native";
-export default function RegisterScreen({navigation}) {
+export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
+  const [mobileNo, setMobileNo] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [address, setAddress] = React.useState("");
-  
+
 
   //   const [data, setData] = React.useState({
   //     email: "",
@@ -61,7 +61,7 @@ export default function RegisterScreen({navigation}) {
       .createUserWithEmailAndPassword(email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        navigation.navigate('HomeScreen')
+        navigation.navigate('LoginScreen')
         // firestore.collection("users").doc(auth().user.uid).set({
         //   fname: firstName,
         //   lname: lastName,
@@ -69,11 +69,11 @@ export default function RegisterScreen({navigation}) {
         //   address: address,
         // });
         if (user.uid) {
-        db.ref("users/"+user.uid).set({
+          db.ref("users/" + user.uid).set({
             fname: firstName,
-            lname: lastName,
+            mobileNo: mobileNo,
             addr: address,
-          }).then(()=>alert('data submitted')).catch((error)=>alert(error)); 
+          }).then(() => alert('data submitted')).catch((error) => alert(error));
         }
         console.log(user.email);
       })
@@ -133,18 +133,18 @@ export default function RegisterScreen({navigation}) {
       <View style={styles.action}>
         <FontAwesome name="user-o" color="#05375a" size={20} />
         <TextInput
-          placeholder="First Name"
+          placeholder="Full Name"
           style={styles.textInput}
           autoCapitalize="none"
           value={firstName}
           onChangeText={(val) => setFirstName(val)}
         />
         <TextInput
-          placeholder="Last Name"
+          placeholder="Mobile no"
           style={styles.textInput}
           autoCapitalize="none"
-          value={lastName}
-          onChangeText={(val) => setLastName(val)}
+          value={mobileNo}
+          onChangeText={(val) => setMobileNo(val)}
         />
       </View>
       <View style={styles.action}>
