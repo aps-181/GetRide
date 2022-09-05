@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { selectNewVehicle } from '../slices/navSlice';
 import { db, auth, firestore } from '../firebase';
 import { useState } from 'react'
+// import AppLoader from './AppLoader'
 
 const Review = () => {
 
@@ -27,6 +28,8 @@ const Review = () => {
         db.ref('users/' + userId).on('value', function (snapshot) {
             setName(snapshot.val().fname);
             setMobno(snapshot.val().mobileNo);
+            console.log(snapshot.val().fname)
+            console.log(snapshot.val().mobileNo)
 
         })
     }
@@ -49,7 +52,7 @@ const Review = () => {
                 destination: destination.description.split(',')[0] + ',' + destination.description.split(',')[1],
                 status: 0,
             }).then(() => {
-                alert("data submitted");
+                alert("Trip has been created. Your rides will be notified shortly");
                 console.log(name);
             }).catch((error) => alert(error))
         }
@@ -58,7 +61,9 @@ const Review = () => {
     let start = (origin?.description?.split(",")[0] + ' ,' + origin?.description?.split(",")[1]) || 'Please add origin'
     let end = (destination?.description?.split(",")[0] + ' ,' + destination?.description?.split(",")[1]) || 'Please add destination'
     return (
+
         <View style={tw`bg-white h-full`}>
+
             <ScrollView>
                 <TouchableOpacity style={tw`mt-2 ml-2`} onPress={() => navigation.goBack()}>
                     <AntDesign name="left" size={24} color="black" />
@@ -107,6 +112,8 @@ const Review = () => {
                 </TouchableOpacity>
             </View>
         </View>
+
+
     )
 }
 

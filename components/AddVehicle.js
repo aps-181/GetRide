@@ -14,7 +14,7 @@ import { setTrip } from '../slices/navSlice';
 
 const AddVehicle = () => {
 
-    const [name, setName] = useState('')
+    const [title, setTitle] = useState('')
     const [regNo, setRegNo] = useState('')
     const [totalSeats, setTotalSeats] = useState(2)
     const [image, setImage] = useState('https://links.papareact.com/7pf')
@@ -60,7 +60,7 @@ const AddVehicle = () => {
                     <View style={tw`mx-3 mr-2 mt-3 mb-3`}>
                         <OutlineInput
                             value={title}
-                            onChangeText={(e) => setName(e)}
+                            onChangeText={(e) => setTitle(e)}
                             label="Vehicle Name"
                             activeValueColor="#000000"
                             activeBorderColor="#000000"

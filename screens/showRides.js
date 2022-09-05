@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Button } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Button, SafeAreaView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { auth, firestore, db } from "../firebase";
 import { Image } from 'react-native-elements';
@@ -13,8 +13,9 @@ const showRides = () => {
     const [noOfPassengers, setNoOfPassengers] = useState('')
     const [pickup, setPickup] = useState('');
     const [destination, setDestination] = useState('')
-    const [image, setImage] = useState('')
+    const [image, setImage] = useState('https://links.papareact.com/7pf')
     const [info, setInfo] = useState([])
+    //const container = [];
 
 
     const getData = () => {
@@ -23,43 +24,60 @@ const showRides = () => {
         // db.ref("createRides/").on("value", function (snapshot) {
         //     console.log(snapshot.val());
         // });
-        // db.ref("createRides/").ref.on('child_added', (snapshot, prevChildKey) => {
-        //     const newPost = snapshot.val();
-        //     console.log(newPost)
-        //     console.log('Driver: ' + newPost.driver);
-        //     setDriver(newPost.driver)
-        //     console.log('Fare: ' + newPost.tripDetails.fare);
-        //     setFare(newPost.tripDetails.fare)
-        //     console.log('Mobno: ' + newPost.tripDetails.mobileNumber);
-        //     setMobile(newPost.tripDetails.mobileNumber)
-        //     console.log('VehicleNo: ' + newPost.vehicle.regNo);
-        //     setVehicleno(newPost.vehicle.regNo)
-        //     console.log('VehicleName: ' + newPost.vehicle.id);
-        //     setNoOfPassengers(newPost.vehicle.id)
-        //     console.log('NoofPas: ' + newPost.seatNo.seats);
-        //     setNoOfPassengers(newPost.seatNo.seats)
-        //     console.log('dest: ' + newPost.destination);
-        //     setPickup(newPost.pickup)
-        //     console.log('pickup ' + newPost.pickup);
-        //     setDestination(newPost.destination)
-        //     console.log('image: ' + newPost.vehicle.image);
-        //     setImage(newPost.vehicle.image)
+        db.ref("createRides/").ref.on('child_added', (snapshot, prevChildKey) => {
+            const container = snapshot.val();
+            //console.log(container)
+            console.log('Driver: ' + container.driver);
+            setDriver(container.driver)
+            console.log('Fare: ' + container.tripDetails.fare);
+            setFare(container.tripDetails.fare)
+            console.log('Mobno: ' + container.tripDetails.mobileNumber);
+            setMobile(container.mobileNumber)
+            console.log('VehicleNo: ' + container.vehicle.regNo);
+            setVehicleno(container.vehicle.regNo)
+            console.log('VehicleName: ' + container.vehicle.title);
+            setNoOfPassengers(container.vehicle.id)
+            console.log('NoofPas: ' + container.seatNo.seats);
+            setNoOfPassengers(container.seatNo.seats)
+            console.log('dest: ' + container.destination);
+            setPickup(container.pickup)
+            console.log('pickup ' + container.pickup);
+            setDestination(container.destination)
+            console.log('image: ' + container.vehicle.image);
+            setImage(container.vehicle.image)
 
 
-        //     //setDriver(newPost.driver);
-        //     //console.log(': ' + newPost.title);
-        //     //   console.log('Previous Post ID: ' + prevChildKey);
-        // });
-
-        db.ref("createRides/").on("value", function (snapshot) {
-            var container = [];
-            snapshot.forEach((childSnapshot) => {
-                console.log(childSnapshot.key)
-                setInfo(childSnapshot.val())
-                container.push(childSnapshot.val())
-                console.log(container)
-            })
+            //setDriver(container.driver);
+            //console.log(': ' + container.title);
+            //   console.log('Previous Post ID: ' + prevChildKey);
         });
+
+        // db.ref("createRides/").on("value", function (snapshot) {
+        //     snapshot.forEach((childSnapshot) => {
+        //         //console.log(childSnapshot.key)
+        //         setInfo(childSnapshot.val())
+        //         container.push(childSnapshot.val())
+        //         console.log(container.driver)
+        //         //console.log('Driver: ' + container.driver);
+        //         // setDriver(container.driver)
+        //         // console.log('Fare: ' + container.tripDetails.fare);
+        //         // setFare(container.tripDetails.fare)
+        //         // console.log('Mobno: ' + container.tripDetails.mobileNumber);
+        //         // setMobile(container.tripDetails.mobileNumber)
+        //         // console.log('VehicleNo: ' + container.vehicle.regNo);
+        //         // setVehicleno(container.vehicle.regNo)
+        //         // console.log('VehicleName: ' + container.vehicle.id);
+        //         // setNoOfPassengers(container.vehicle.id)
+        //         // console.log('NoofPas: ' + container.seatNo.seats);
+        //         // setNoOfPassengers(container.seatNo.seats)
+        //         // console.log('dest: ' + container.destination);
+        //         // setPickup(container.pickup)
+        //         // console.log('pickup ' + container.pickup);
+        //         // setDestination(container.destination)
+        //         // console.log('image: ' + container.vehicle.image);
+        //         // setImage(container.vehicle.image)
+        //     })
+        // });
 
 
 
@@ -74,121 +92,128 @@ const showRides = () => {
 
     const data = [
         {
-            id: "123",
-            title: "Ciaz",
-            multiplier: 1,
-            image: "https://links.papareact.com/7pf",
-            regNo: "KL 07 CG 9808",
-            totalSeats: 5
+            id: 1,
+            apickup: 'Model Engineering College',
+            adestination: 'Lulu Mall',
+            adriver: 'John',
+            aimage: 'https://links.papareact.com/7pf',
+            amobNo: '9988776632',
+            afare: '30',
+            aseats: '3',
+            avehiclename: 'Alto 800',
+            avehicleno: 'KL 34 A 9370'
+
+        },
+        {
+            id: 2,
+            apickup: "Lulu Mall",
+            adestination: 'Model Engineering College',
+            adriver: 'Joy',
+            aimage: 'https://res.cloudinary.com/djsyh5syl/image/upload/v1659076334/mini/scooter2edit-removebg-preview_biwusi.png',
+            amobNo: '879012678',
+            afare: '25',
+            aseats: 1,
+            avehiclename: 'Activa',
+            avehicleno: 'KL 66 AD 3535'
+
+        },
+        {
+            id: 3,
+            apickup: 'Model Engineering College',
+            adestination: 'Lulu Mall',
+            adriver: 'Abiram',
+            aimage: 'https://links.papareact.com/7pf',
+            amobNo: '1234567890',
+            afare: '70',
+            aseats: '3',
+            avehiclename: 'Alto',
+            avehicleno: 'KL 07 BK 5577'
+
         },
         // {
-        //     id: "Uber-XL-456",
-        //     title: "Uber XL",
-        //     multiplier: 1.2,
-        //     image: "https://links.papareact.com/5w8",
-        //     regNo: "KL 64 6464",
-        //     totalSeats: 5
+        //     id: 3,
+        //     apickup: { pickup } || 'Model Engineering College',
+        //     adestination: { destination } || 'Kalloor Stadium',
+        //     adriver: { driver } || 'Akshay',
+        //     aimage: { image } || 'https://links.papareact.com/7pf',
+        //     amobNo: { mobNo } || '987625431',
+        //     afare: { fare } || '22',
+        //     avehiclename: { vehiclename } || 'Jazz',
+        //     avehicleno: { vehicleno } || 'KL 07 CV 5625',
+        //     aseats: { noOfPassengers } || '3'
+        // }
 
-        // },
-        {
-            id: "Bike",
-            title: "Activa",
-            multiplier: 1.2,
-            // image: "https://ih1.redbubble.net/image.3253725746.3421/st,small,107x107-pad,100x100,f8f8f8.jpg",
-            // image: "https://res.cloudinary.com/djsyh5syl/image/upload/c_scale,h_106/v1659076440/mini/sticker-vespa-gs-motif_70066940-removebg-preview_v7ccsu.png",
-            // image: "https://cdn5.vectorstock.com/i/thumb-large/53/69/isolated-vintage-motorcycle-design-vector-31955369.jpg",
-            image: "https://res.cloudinary.com/djsyh5syl/image/upload/v1659076334/mini/scooter2edit-removebg-preview_biwusi.png",
-            regNo: "KL 07 CA 3547",
-            totalSeats: 2
-
-        },
     ];
 
 
     return (
-        <View>
-            <Text>showRides</Text>
-            {/* <FlatList
-                data={getData}
+        <SafeAreaView style={tw`h-full bg-white`}>
+
+            <FlatList
+                data={data}
                 keyExtractor={(item) => item.id}
                 ItemSeparatorComponent={() => {
                     return <View style={[tw`bg-gray-200`, { height: 0.5 }]} />
                 }}
-                renderItem={({ item: { id, title, regNo, totalSeats, image }, item }) => (
-                    <TouchableOpacity
-                        // onPress={() => (setSelected(item)
+                renderItem={({ item: { aseats, amobNo, adriver, afare, aimage, apickup, adestination, avehicleno, avehiclename }, item }) => (
+                    <View style={[tw`border border-zinc-800 border-2 p-2 shadown-md m-3`, { height: 200 }]}>
+                        <View style={tw`flex-row justify-between`}>
+                            <View>
 
-                        // )}
-                        style={tw`flex-row justify-between items-center px-5 pb-1`}>
-                        <Image
-                            style={{
-                                width: 50,
-                                height: 50,
-                                resizeMode: "contain",
-                            }}
-                            source={{ uri: image }}
-                        />
-                        <View style={tw`-ml-6`}>
-                            <Text style={tw`text-xl font-semibold`}>{ }</Text>
-                        </View>
-                        <View>
-                            <Text style={tw`text`}>{regNo}</Text>
-                            <Text style={tw`text-sm`}>Capacity:{totalSeats}</Text>
-                        </View>
-                    </TouchableOpacity>
-                )}
-            /> */}
+                                <View>
+                                    <Text style={tw`text-lg`}>{adriver}</Text>
+                                    <Text>{amobNo}</Text>
+                                </View>
+                                <View>
+                                    <Text style={tw`text-md`}>{apickup}</Text>
+                                    <Text style={tw`text-md`}>{adestination}</Text>
+                                    <Text>{aseats}</Text>
+                                </View>
 
-
-            <View style={[tw`border border-zinc-800 border-2 p-2 shadown-md m-3`, { height: 200 }]}>
-                <View style={tw`flex-row justify-between`}>
-                    <View>
-                        <View>
-                            <Text style={tw`text-lg`}>{pickup}</Text>
-                            <Text style={tw`text-lg`}>{destination}</Text>
-                        </View>
-                        <View>
-                            <Text style={tw`text-lg`}>{driver}</Text>
-                            <Text>{mobNo}</Text>
-                        </View>
-
-                    </View>
-                    <View>
-                        <View>
-                            {/* <Text style={tw`text-lg`}>{}</Text>
+                            </View>
+                            <View>
+                                <View>
+                                    {/* <Text style={tw`text-lg`}>{}</Text>
                             <Text style={tw`text-lg`}>Time: 6:30PM</Text> */}
-                        </View>
-                        <View>
-                            <Text>{vehiclename}</Text>
-                            <Text>{vehicleno}</Text>
-                        </View>
+                                </View>
+                                <View style={tw`flex items-end`}>
+                                    <Text>{avehiclename}</Text>
+                                    <Text>{avehicleno}</Text>
+                                </View>
 
-                    </View>
-                    <View>
-                    </View>
-                    <View style={tw`border-l-2 border-gray-200`}></View>
-                    <View>
-                        <Text style={tw`text-lg`}>Fare:</Text>
-                        <Text>{fare}</Text>
-                        <View>
-                            <Image
-                                style={{
-                                    width: 50,
-                                    height: 50,
-                                    resizeMode: "contain",
-                                }}
-                                source={{ uri: "https://links.papareact.com/7pf" }}
-                            />
+                            </View>
+                            <View>
+                            </View>
+                            <View style={tw`border-l-2 border-gray-200`}></View>
+                            <View>
+                                {/* <Text style={tw`text-lg`}>Fare:</Text> */}
+                                <Text style={tw`text-lg`}>{afare}Rs</Text>
+                                <View>
+                                    <Image
+                                        style={{
+                                            width: 50,
+                                            height: 50,
+                                            resizeMode: "contain",
+                                        }}
+                                        source={{ uri: aimage }}
+                                    />
+                                </View>
+                            </View>
+
+                        </View>
+                        <View style={tw`mt-auto`}>
+                            <Button
+                                title="Join Ride"
+                                // color="#841584"
+                                onPress={() => { alert('You have been added to the trip. Please arrive on time.') }}
+                            ></Button>
                         </View>
                     </View>
+                )}
+            />
 
-                </View>
-                <Button
-                    title="Join Ride"
-                // color="#841584"
-                ></Button>
-            </View>
-        </View>
+        </SafeAreaView>
+
     )
 }
 

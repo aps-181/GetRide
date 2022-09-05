@@ -9,6 +9,7 @@ import RouteScreen from "../screens/RouteScreen";
 import UserScreen from "../screens/UserScreen";
 import UserSScreen from "../screens/UserSScreen";
 import showRides from "../screens/showRides";
+import DriverFinalScreen from "../screens/DriverFinalScreen";
 const screens = {
     FirstScreen: {
         screen: FirstScreen,
@@ -53,6 +54,11 @@ const screens = {
     },
     showRides: {
         screen: showRides,
+        navigationOptions: { title: 'Trips Available' }
+
+    },
+    DriverFinalScreen: {
+        screen: DriverFinalScreen,
         navigationOptions: { headerShown: false }
     }
 
